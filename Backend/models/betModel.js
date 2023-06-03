@@ -16,8 +16,9 @@ const betSchema = new Schema({
         required: true
     },
     winLose: {
-        type: Boolean,
-        required: true
+        type: String,
+        required: true,
+        enum: ["Win", "Lose"]
     }
 }, {timestamps: true})
 
