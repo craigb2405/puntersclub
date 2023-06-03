@@ -1,6 +1,12 @@
 import React from 'react'
 
 function BetDetails({bet}) {
+    const handleClick = async () => {
+        const response = await fetch('/api/bets/' + bet._id, {
+            method: 'DELETE'
+        })
+        const json = await response.json()
+    }
     
   return (
 
@@ -10,7 +16,7 @@ function BetDetails({bet}) {
     <p><strong>Bet Amount: </strong>£{bet.betAmount}</p>
     <p><strong>Winnings Amount: </strong>£{bet.winAmount}</p>
     <p><strong>Win or Lose?: </strong>{bet.winLose}</p>
-    
+    <span onclick={handleClick}></span>
     </div>
   )
 }
