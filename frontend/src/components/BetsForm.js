@@ -8,6 +8,7 @@ function BetsForm() {
     const [betAmount, setBetAmount] = useState(10)
     const [winAmount, setWinAmount] = useState(0)
     const [winLose, setWinLose] = useState("")
+    const [emptyFields, setEmptyfields] = useState([])
 
     const [error, setError] = useState(null)
 
@@ -25,6 +26,7 @@ function BetsForm() {
 
         if (!response.ok){
             setError(json.error)
+            setEmptyfields(json.emptyFields)
         }
         if (response.ok){
             setPunter('')
@@ -32,6 +34,7 @@ function BetsForm() {
             setWinAmount(0)
             setWinLose('')
             setError(null)
+            setEmptyfields([])
             console.log('New bet added', json)
             dispatch ({type: 'CREATE_BET', payload: json})
         }
@@ -39,29 +42,40 @@ function BetsForm() {
   return (
     <form className='create' onSubmit={handleSubmit}>
     <h3>Add a new bet:</h3>
-    <label>Punter Name</label>
-    <input
-        type="text"
+    <label for="punterName">Punter Name</label>
+    <select id='punterName'
         onChange={(e) => setPunter(e.target.value)}
         value={punter}
-    />
+        className={emptyFields.includes('punter') ? 'error' : ''}>
+        <option value='Gibson'>Gibson</option>
+        <option value='Butler'>Butler</option>
+        <option value='McQuarrie'>McQuarrie</option>
+        <option value='Surinder'>Surinder</option>
+        <option value='Beaver'>Beaver</option>
+        <option value='Andy'>Andy</option>
+        <option value='Scott'>Scott</option>
+        <option value='Jim'>Jim</option>
+    </select>
     <label>Bet Amount:</label>
     <input
         type="number"
         onChange={(e) => setBetAmount(e.target.value)}
         value={betAmount}
+        className={emptyFields.includes('betAmount') ? 'error' : ''}
     />
     <label>Win Amount:</label>
     <input
         type="text"
         onChange={(e) => setWinAmount(e.target.value)}
         value={winAmount}
+        className={emptyFields.includes('winAmount') ? 'error' : ''}
     />
     <label>Win or Lose:</label>
     <input
         type="text"
         onChange={(e) => setWinLose(e.target.value)}
         value={winLose}
+        className={emptyFields.includes('winLose') ? 'error' : ''}
     />
     <button>Add Bet</button>
     {error && <div className='error'>{error}</div>}

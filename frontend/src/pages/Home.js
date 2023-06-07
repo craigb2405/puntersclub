@@ -4,6 +4,7 @@ import { useBetsContext } from '../hooks/useBetsContext'
 // Components
 import BetDetails from '../components/BetDetails'
 import BetsForm from '../components/BetsForm'
+import StatCards from '../components/StatCards'
 
 const Home = () => {
   const {bets, dispatch} = useBetsContext()
@@ -19,10 +20,14 @@ const Home = () => {
     }
 
     fetchBets()
-  }, [])
+  }, [dispatch])
 
   return (
+    <>
+    
+    
     <div className='home'>
+    
       <div className='bets'>
           {bets && bets.map((bet) => (
         <BetDetails key={bet._id} bet={bet}/>
@@ -32,6 +37,7 @@ const Home = () => {
       </div>
       <BetsForm/>
     </div>
+    </>
   )
 }
 

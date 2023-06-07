@@ -26,6 +26,11 @@ header a {
   text-decoration: none;
 }
 
+.navbar {
+  display: flex;
+  gap: 10px;
+}
+
 .pages {
   max-width: 1400px;
   padding: 20px;
@@ -103,3 +108,23 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+input.error {
+  border: 1px solid var(--error);
+}
+
+.statContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.statCard {
+  width: 20%;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+

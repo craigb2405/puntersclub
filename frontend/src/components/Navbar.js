@@ -8,6 +8,10 @@ function Navbar() {
             <Link to="/">
                 <h1>Punters Club</h1>
             </Link>
+            <div className='navbar'>
+            <Link to="/">All Bets</Link>
+            <Link to="/">Punter Stats</Link>
+            </div>
         </div>
     </header>
   )
